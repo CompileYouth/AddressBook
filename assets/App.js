@@ -1,3 +1,4 @@
+import Map from "./map/Map.js";
 import ClockPanel from "./panel/ClockPanel.js";
 
 export default class App extends React.Component {
@@ -7,7 +8,10 @@ export default class App extends React.Component {
 	
 	render() {
 		return (
-			<ClockPanel />
+			<div id="ab-app">
+				<Map />
+				<ClockPanel />
+			</div>
 		);
 	}
 }
