@@ -1,2 +1,3 @@
 import App from './App.js';
-console.log("apa");
+
+$(document).ready(React.render(<App />, document.body));

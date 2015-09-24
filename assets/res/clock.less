@@ -1,0 +1,27 @@
+#ab-clock {
+	width: 240px;
+	height: 80px;
+	margin: 0 auto;
+	background-color: @panel-background;
+	border-radius: 5px;
+	
+	>.time, >.date-week {
+		display: block;
+		text-align: center;
+		height: 40px;
+		line-height: 40px;
+	}
+	
+	.time > .separator {
+		@keyframes sepa {
+			from {
+				opacity: 1;
+			}
+			to {
+				opacity: 0;
+			}
+		}
+		
+		animation: sepa 1s infinite;
+	}
+}
