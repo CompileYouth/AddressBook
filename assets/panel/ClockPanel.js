@@ -1,13 +1,13 @@
 
 
 export default class ClockPanel extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor( props ) {
+		super( props );
 		
 		this.state = {
 			now: new Date()
 		}
-		console.log("clock");
+		console.log( "clock" );
 	}
 	
 	componentDidMount() {
@@ -15,7 +15,7 @@ export default class ClockPanel extends React.Component {
     }
 
     componentDidUpdate() {
-        setTimeout(this.update.bind(this), 1000);
+        setTimeout( this.update.bind(this), 1000 );
     }
 	
 	update() {
