@@ -10,9 +10,52 @@
 	width: 22%;
 }
 
-#ab-contacts .panel-main {
+#ab-contacts .panel-header {
 	position: absolute;
 	top: 0;
+	left: 0;
+	right: @li-size;
+	height: @li-size;
+
+	background-color: @ab-background;
+
+	> .dock {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: @li-size;
+		height: @li-size;
+		line-height: @li-size;
+		text-align: center;
+		cursor: pointer;
+
+		&:hover {
+			> span {
+				opacity: 1;
+			}
+		}
+
+		> span {
+			color: #fff;
+			transform: rotate( -45deg );
+			opacity: 0.3;
+			transition: opacity .15s transform .3s;
+
+			&.docked {
+				transform: rotate( 0 );
+				opacity: 0.8;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+#ab-contacts .panel-main {
+	position: absolute;
+	top: @li-size;
 	left: 0;
 	bottom: 0;
 	right: @li-size;

@@ -9,22 +9,38 @@ export default class ContactsPanelContainer extends React.Component {
 	componentDidMount() {
 		this.$element = $( React.findDOMNode( this ) );
 		this._initNav();
-		this._initMain();
+		this._initHeader();
 	}
 
 	_initNav() {
-		this.$nav = $( "<ul class=panel-icon><li><span class='fa fa-users h3'></span></li><li class=active><span class='fa fa-star h3'></span></li><li class=spring></li></ul>" );
+		var $users_li = $( "<li class=active><span class='fa fa-users h3'></span></li>" );
+		var $collection_li = $( "<li><span class='fa fa-star h3'></span></li>" );
+		var $spring_li = $( "<li class=spring></li>" );
+
+		this.$nav = $( "<ul class=panel-icon></ul>" );
+
+		this.$nav.append( $users_li );
+		this.$nav.append( $collection_li );
+		this.$nav.append( $spring_li );
+
 		this.$element.append( this.$nav );
 	}
 
-	_initMain() {
-		this.$main = $( "<main class=panel-main></main>" );
-		this.$element.append( this.$main );
+	_initHeader() {
+		this.$header = $( this.$element.find( ".panel-header" ) );
+		console.log( this.$header );
+		this.$header.append( "<div class=dock><span class='fa fa-thumb-tack normal docked'></span></div>" );
 	}
 
 	render() {
 		return (
-			<div id="ab-contacts"></div>
+			<div id="ab-contacts">
+				<header className="panel-header" />
+				<main className="panel-main">
+					<ContactsListPanel />
+					<ContactsCollectionPanel />
+				</main>
+			</div>
 		);
 	}
 }
