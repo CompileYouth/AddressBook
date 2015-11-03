@@ -1,8 +1,87 @@
+@li-size: 3.5em;
+@radius-size: 10px;
+@panel-border: @border-size solid rgba(255, 255, 255, 0.5);
+
 #ab-contacts {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
-	width: 20%;
-	background-color: #fff;
+	width: 22%;
+}
+
+#ab-contacts .panel-main {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: @li-size;
+
+	background-color: @ab-background;
+} 
+
+#ab-contacts .panel-icon {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: @li-size;
+
+	display: flex;
+	flex-flow: column;
+
+	> li {
+		position: relative;
+		height: @li-size;
+		width: @li-size;
+		line-height: @li-size;
+		text-align: center;
+		border-bottom: @panel-border;
+		border-left: @panel-border;
+		border-right: @panel-border;
+		border-radius: 0 @radius-size @radius-size 0;
+		background-color: @ab-background;
+
+		> span {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			line-height: 2.2em;
+			opacity: 0.3;
+			transition: opacity .015s;
+			color: #fff;
+		}
+
+		&:hover {
+			cursor: pointer;
+
+			> span {
+				opacity: 1;
+			}
+		}
+
+		&.spring {
+			position: relative;
+			width: 0;
+			border-left: @border-size;
+			flex: auto;
+		}
+
+		&.active {
+			border-left: none;
+			cursor: default;
+
+			&:hover {
+				> span {
+					opacity: 1;
+				}
+			}
+
+			> span {
+				opacity: 0.8;
+			}
+		}
+	}
 }
