@@ -1,6 +1,6 @@
 import Map from "./map/Map.js";
 import ClockPanel from "./panel/ClockPanel.js";
-import ContactsPanel from "./panel/ContactsPanel.js";
+import ContactsPanelContainer from "./panel/ContactsPanelContainer.js";
 
 export default class App extends React.Component {
 	constructor( props ) {
@@ -12,7 +12,7 @@ export default class App extends React.Component {
 			<div id="ab-app">
 				<Map />
 				<ClockPanel />
-				<ContactsPanel />
+				<ContactsPanelContainer />
 			</div>
 		);
 	}
