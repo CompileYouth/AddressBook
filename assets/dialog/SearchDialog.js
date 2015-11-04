@@ -8,7 +8,9 @@ export default class SearchDialog extends Dialog {
 	render() {
 		return (
 			<div id="ab-dialog-searching">
-
+				<input type="text" />
+				<span className="fa fa-search"></span>
+				<ul className="ab-dialog-searching-list"></ul>
 			</div>
 		);
 	}
