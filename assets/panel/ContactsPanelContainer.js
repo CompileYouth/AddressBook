@@ -14,17 +14,41 @@ export default class ContactsPanelContainer extends React.Component {
 		this.$element = $( React.findDOMNode( this ) );
 		this._initNav();
 		this._initHeader();
+
+		this._hidePanel();
+		this._startPanelListening();
+
+		this.switchToListPanel();
 	}
 
 	_initNav() {
-		var $users_li = $( "<li class=active><span class='fa fa-users h3'></span></li>" );
-		var $collection_li = $( "<li><span class='fa fa-star h3'></span></li>" );
+		var self = this;
+		this.$users_li = $( "<li class=active><span class='fa fa-users h3'></span></li>" );
+		this.$users_li.on( "click", function( e ) {
+			//select contacts list
+			var $ele = $( e.currentTarget );
+			if ( $ele.hasClass( "active" ) ) {
+				return;
+			}
+
+			self.switchToListPanel();
+		} );
+		this.$collection_li = $( "<li><span class='fa fa-star h3'></span></li>" );
+		this.$collection_li.on( "click", function( e ) {
+			//select contacts collection
+			var $ele  = $( e.currentTarget );
+			if ( $ele.hasClass( "active" ) ) {
+				return;
+			}
+
+			self.switchToCollectionPanel();
+		} );
 		var $spring_li = $( "<li class=spring></li>" );
 
 		this.$nav = $( "<ul class=panel-icon></ul>" );
 
-		this.$nav.append( $users_li );
-		this.$nav.append( $collection_li );
+		this.$nav.append( this.$users_li );
+		this.$nav.append( this.$collection_li );
 		this.$nav.append( $spring_li );
 
 		this.$element.append( this.$nav );
@@ -32,7 +56,7 @@ export default class ContactsPanelContainer extends React.Component {
 
 	_initHeader() {
 		this.$header = $( this.$element.find( ".panel-header" ) );
-		var $dock = $( "<div class=dock><span class='fa fa-thumb-tack normal docked'></span></div>" );
+		var $dock = $( "<div class=dock><span class='fa fa-thumb-tack normal'></span></div>" );
 
 		var self = this;
 		$dock.on( "click", "span", function( e ) {
@@ -45,7 +69,6 @@ export default class ContactsPanelContainer extends React.Component {
 				self._undock( $icon );
 			}
 			else {
-				console.log("to dock")
 				self._dock( $icon );
 			}
 		} );
@@ -133,6 +156,34 @@ export default class ContactsPanelContainer extends React.Component {
 	_stopPanelListening() {
 		this.$element.off( "mouseenter" );
 		this.$element.off( "mouseleave" );
+	}
+
+	switchToListPanel() {
+		var $headerTitle = $( "<div class=title>" + "所有联系人" + "</div>" );
+
+		var $title = this.$header.find( ".title" );
+		if( $title ) {
+			$title.remove();
+		}
+
+		this.$header.append( $headerTitle );
+
+		this.$collection_li.removeClass( "active" );
+		this.$users_li.addClass( "active" );
+	}
+
+	switchToCollectionPanel() {
+		var $headerTitle = $( "<div class=title>" + "个人收藏" + "</div>" );
+
+		var $title = this.$header.find( ".title" );
+		if( $title ) {
+			$title.remove();
+		}
+
+		this.$header.append( $headerTitle );
+
+		this.$users_li.removeClass( "active" );
+		this.$collection_li.addClass( "active" );
 	}
 
 	render() {
