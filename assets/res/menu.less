@@ -1,0 +1,40 @@
+#ab-menu {
+	z-index: 20;
+	position: absolute;
+	width: 320px;
+	height: 80px;
+	bottom: 50px;
+	left: 50%;
+	transform: translate( -50% );
+
+	> .setting, > .locating, > .searching {
+		border-radius: 50%;
+		border: @border-size solid rgba(255, 255, 255, 0.5);
+		position: relative;
+		width: 80px;
+		height: 80px;
+		line-height: 80px;
+		text-align: center;
+		float: left;
+		background-color: @ab-background;
+		font-size: 1.5em;
+
+		&:hover {
+			cursor: pointer;
+
+			> span {
+				opacity: 1;
+			}
+		}
+
+		> span {
+			color: #fff;
+			opacity: 0.5;
+		}
+	}
+
+	> .locating {
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+}
