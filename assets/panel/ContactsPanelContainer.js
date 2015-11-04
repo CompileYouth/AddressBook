@@ -4,6 +4,10 @@ import ContactsCollectionPanel from "./ContactsCollectionPanel.js";
 export default class ContactsPanelContainer extends React.Component {
 	constructor( props ) {
 		super( props );
+
+		this.animating = null;
+		this.timeoutId = null;
+		this.panelStatus = false;//false: hidden, true: shown
 	}
 
 	componentDidMount() {
@@ -51,20 +55,84 @@ export default class ContactsPanelContainer extends React.Component {
 
 	_undock( $ele ) {
 		$ele.removeClass( "docked" );
-		this._showPanel();
+		this._startPanelListening();
 	}
 
 	_dock( $ele ) {
 		$ele.addClass( "docked" );
+		this._stopPanelListening();
 	}
 
 	_showPanel() {
 		var containerWidth = this.$element.find( ".panel-main" ).width();
-		console.log(containerWidth);
+		this.animating = true;
+		var self = this;
+		this.$element.animate( {
+			left: '0'
+		}, 200, "swing", function() {
+			self.timeoutId = null;
+			self.animating = false;
+			self.panelStatus = true;
+		} );
 	}
 
 	_hidePanel() {
+		var containerWidth = this.$element.find( ".panel-main" ).width();
+		this.animating = true;
+		var self = this;
+		this.$element.animate( {
+			left: -containerWidth + "px"
+		}, 200, function() {
+			self.timeoutId = null;
+			self.animating = false;
+			self.panelStatus = false;
+		} );
+	}
 
+	_startPanelListening() {
+		var self = this;
+		this.$element.on( "mouseenter", function( e ) {
+			if( self.timeoutId !== null ) {
+				clearTimeout( self.timeoutId );
+				self.timeoutId = null;
+			}
+
+			if( self.animating ) {
+				self._showPanel();
+			}
+			else {
+				if( ! self.panelStatus ) { // if container is shown
+					var that = self;
+					self.timeoutId = setTimeout( function() {
+						that._showPanel();
+					}, 400 );
+				}
+			}
+		} );
+
+		this.$element.on( "mouseleave", function( e ) {
+			if( self.timeoutId !== null ) {
+				clearTimeout( self.timeoutId );
+				self.timeoutId = null;
+			}
+
+			if( this.animating ) {
+				this._hidePanel();
+			}
+			else {
+				if( self.panelStatus ) { //if container is hidden 
+					var that = self;
+					self.timeoutId = setTimeout( function() {
+						that._hidePanel();
+					}, 600 );
+				}
+			}
+		} );
+	}
+
+	_stopPanelListening() {
+		this.$element.off( "mouseenter" );
+		this.$element.off( "mouseleave" );
 	}
 
 	render() {
