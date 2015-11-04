@@ -27,19 +27,17 @@
 		height: @li-size;
 		line-height: @li-size;
 		text-align: center;
-		cursor: pointer;
-
-		&:hover {
-			> span {
-				opacity: 1;
-			}
-		}
 
 		> span {
 			color: #fff;
 			transform: rotate( -45deg );
-			opacity: 0.3;
-			transition: opacity .15s transform .3s;
+			opacity: 0.5;
+			transition: opacity .15s, transform .3s;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 1;
+			}
 
 			&.docked {
 				transform: rotate( 0 );

@@ -28,8 +28,43 @@ export default class ContactsPanelContainer extends React.Component {
 
 	_initHeader() {
 		this.$header = $( this.$element.find( ".panel-header" ) );
-		console.log( this.$header );
-		this.$header.append( "<div class=dock><span class='fa fa-thumb-tack normal docked'></span></div>" );
+		var $dock = $( "<div class=dock><span class='fa fa-thumb-tack normal docked'></span></div>" );
+
+		var self = this;
+		$dock.on( "click", "span", function( e ) {
+			if( self.animating ) {
+				return;
+			}
+
+			var $icon = $( e.currentTarget );
+			if( $icon.hasClass( "docked" ) ) {
+				self._undock( $icon );
+			}
+			else {
+				console.log("to dock")
+				self._dock( $icon );
+			}
+		} );
+
+		this.$header.append( $dock );
+	}
+
+	_undock( $ele ) {
+		$ele.removeClass( "docked" );
+		this._showPanel();
+	}
+
+	_dock( $ele ) {
+		$ele.addClass( "docked" );
+	}
+
+	_showPanel() {
+		var containerWidth = this.$element.find( ".panel-main" ).width();
+		console.log(containerWidth);
+	}
+
+	_hidePanel() {
+
 	}
 
 	render() {
