@@ -5,6 +5,11 @@ export default class SettingDialog extends React.Component {
 
 	componentDidMount() {
 		this.$element = $( React.findDOMNode( this ) );
+		this.originPosition = {
+			top: this.$element.position().top,
+			left: this.$element.position().left
+		};
+		console.log("begin", this.originPosition);
 	}
 
 	show() {
@@ -36,6 +41,12 @@ export default class SettingDialog extends React.Component {
 			if( $input ) {
 				$input.val( "" );
 			}
+
+			console.log( self.originPosition);
+			self.$element.css( {
+				left: 0,
+				top: -15
+			} );
 		} );
 	}
 
