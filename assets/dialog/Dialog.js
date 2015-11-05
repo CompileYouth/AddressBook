@@ -8,13 +8,18 @@ export default class SettingDialog extends React.Component {
 	}
 
 	show() {
-		console.log("show dialog");
+		var self = this;
 		this.$element.css( {
 			display: "block",
 			transform: "scale( 0 )"
 		} ).transit( {
 			transform: "translate( -50% ), scale( 1 )"
-		}, 150);
+		}, 150, function() {
+			var $input = self.$element.find("input");
+			if( $input ) {
+				$input.focus();
+			}
+		});
 	}
 
 	hide() {
@@ -23,6 +28,11 @@ export default class SettingDialog extends React.Component {
 			transform: "scale( 0 )"
 		}, function() {
 			self.$element.css( "display", "none" );
+
+			var $input = self.$element.find("input");
+			if( $input ) {
+				$input.val( "" );
+			}
 		} );
 	}
 

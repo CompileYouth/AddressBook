@@ -16,11 +16,9 @@ export default class App extends React.Component {
 	}
 
 	handleMenuSettingClick() {
-		console.log("handleMenuSettingClick");
-
+		var self = this;
 		this._showOverlay( function() {
-			console.log( "popup setting dialog");
-
+			self.refs.settingDialog.show();
 		} );
 	}
 
@@ -29,10 +27,9 @@ export default class App extends React.Component {
 	}
 
 	handleMenuSearchingClick() {
-		console.log("handleMenuSearchingClick");
 		var self = this;
 		this._showOverlay( function() {
-			console.log("popup  searching dialog ");
+			var that = self;
 			self.refs.searchDialog.show();
 		});
 	

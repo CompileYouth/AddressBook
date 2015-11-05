@@ -1,0 +1,85 @@
+#ab-dialog-setting {
+	z-index: 40;
+	position: absolute;
+	height: 330px;
+	width: 400px;
+	top: 25%;
+	left: 50%;
+	transform: translate( -50% );
+	background-color: @ab-background;
+	border-radius: 20px;
+
+	display: none;
+
+	@header-height: 60px;
+	> .ab-dialog-setting-header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: @header-height;
+		line-height: @header-height;
+		text-align: center;
+		font-size: 1.5em;
+		color: #fff;
+		border-bottom: @border-size solid rgba( 255, 255, 255, 0.8);
+	}
+
+	@list-margin-size: 20px;
+	> .ab-dialog-setting-list {
+		position: absolute;
+		top: @header-height + @list-margin-size;
+		left: @list-margin-size * 2;
+		right: @list-margin-size * 2;
+		bottom: @list-margin-size * 2;
+
+		@li-height: 70px;
+		> li {
+			position: absolute;
+			left: 0;
+			right: 0;
+			height: @li-height;
+			line-height: @li-height;
+			font-size: 1.2em;
+
+			> span {
+				color: #fff;	
+			}
+
+			@button-height: 30px;
+			> .setting-button {
+				position: absolute;
+				height: @button-height;
+				width: @button-height * 2;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				background-color: #4fd064;
+				border-radius: 0.8em;
+
+				&:hover {
+					cursor: pointer;
+				}
+
+				> .button-circle {
+					position: absolute;
+					height: @button-height;
+					width: @button-height;
+					border-radius: @button-height / 2;
+					background-color: #fff;
+				}
+			}
+		}
+
+		> li:nth-of-type( 1 ) {
+			top: 0;
+		}
+		> li:nth-of-type( 2 ) {
+			top: @li-height;
+		}
+		> li:nth-of-type( 3 ) {
+			top: @li-height * 2;
+		}
+	}
+}
