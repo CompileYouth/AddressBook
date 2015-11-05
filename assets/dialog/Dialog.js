@@ -11,9 +11,11 @@ export default class SettingDialog extends React.Component {
 		var self = this;
 		this.$element.css( {
 			display: "block",
-			transform: "scale( 0 )"
+			transform: "scale( 0 )",
+			opacity: 0
 		} ).transit( {
-			transform: "translate( -50% ), scale( 1 )"
+			transform: "scale( 1 )",
+			opacity: 1
 		}, 150, function() {
 			var $input = self.$element.find("input");
 			if( $input ) {
@@ -25,7 +27,8 @@ export default class SettingDialog extends React.Component {
 	hide() {
 		var self = this;
 		this.$element.transit( {
-			transform: "scale( 0 )"
+			transform: "scale( 0 )",
+			opacity: 0
 		}, function() {
 			self.$element.css( "display", "none" );
 

@@ -7,7 +7,16 @@ export default class SettingDialog extends Dialog {
 
 	componentDidMount() {
 		this.$element = $( React.findDOMNode( this ) );
+		this.dragContext = {
+			mouseX: 0,
+			mouseY: 0,
+			left: 0,
+			top: 0
+		};
+		this.makeMoveable();
 	}
+
+	/*-------------Handle Method Begin--------------*/
 
 	handleAddressBook() {
 		console.log( "handle address book" );
@@ -33,6 +42,68 @@ export default class SettingDialog extends Dialog {
 		$cl.toggleClass( "active" );
 		this.props.onToggleClock( $cl.hasClass( "active" ) );
 	}
+
+	/*-------------Handle Method End----------------*/
+
+	/*-------------Event Method Begin---------------*/
+
+	makeMoveable() {
+		var self = this;
+		var $header = this.$element.find( "header" );
+		$header.on( "mousedown", function( e ) {
+			e.preventDefault();
+
+			$header.css( "cursor", "move" );
+			self.dragContext.mouseX = e.screenX;
+			self.dragContext.mouseY = e.screenY;
+			self.dragContext.left = self.$element.position().left;
+			self.dragContext.top = self.$element.position().top;
+
+			console.log( self.dragContext );
+
+			self.$element.transition( {
+				scale: 1.04,
+				opacity: 0.68
+			}, 100);
+
+			$( document.body ).on( "mousemove", function( e ) {
+				//Begin to move
+				var mouseOffsetX = e.screenX - self.dragContext.mouseX;
+				var mouseOffsetY = e.screenY - self.dragContext.mouseY;
+
+				console.log( e.screenX, e.screenY, mouseOffsetX, mouseOffsetY)
+
+				/*var newTop = self.dragContext.top + mouseOffsetY;
+				var bodyHeight = $( document ).height();
+				var headerHeight = $header.height();
+
+				if( newTop <= 0 ) {
+					newTop = 0;
+				}
+				if( ( newTop + headerHeight ) > bodyHeight ) {
+					newTop = bodyHeight - headerHeight;
+				}*/
+
+				self.$element.css( {
+					top: self.dragContext.top + mouseOffsetY,
+					left: self.dragContext.left + mouseOffsetX
+				} );
+			} );
+
+			$( document.body ).on( "mouseup", function( e ) {
+				$( document.body ).off( "mousemove" );
+				$( document.body ).off( "mouseup" );
+				$header.css( "cursor", "default" );
+				self.$element.transition( {
+					scale: 1,
+					opacity: 1
+				}, 100);
+			} );
+
+		} );
+	}
+
+	/*-------------Event Method End-----------------*/
 
 	render() {
 		return (
