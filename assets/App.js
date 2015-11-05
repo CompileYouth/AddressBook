@@ -48,6 +48,22 @@ export default class App extends React.Component {
 		} );
 	}
 
+	/*---------------------Setting Dialog Begin-------------------------*/
+
+	handleAddressBook() {
+		console.log("address book");
+	}
+
+	handlePersonalInfo() {
+		console.log("person info");
+	}
+
+	handleClock() {
+		console.log("clock");
+	}
+
+	/*---------------------Setting Dialog End---------------------------*/
+
 	_initOverlay() {
 		this.$overlay = $( React.findDOMNode( this.refs.overlay ) );
 		this.$overlay.detach();
@@ -72,7 +88,7 @@ export default class App extends React.Component {
 				<PersonalIntoPanel />
 				<ContactsPanelContainer />
 				<Menu onSettingClick={ this.handleMenuSettingClick.bind( this ) } onLocatingClick={ this.handleMenuLocatingClick.bind( this ) } onSearchingClick={ this.handleMenuSearchingClick.bind( this ) }/>
-				<SettingDialog ref="settingDialog" />
+				<SettingDialog ref="settingDialog" onToggleAddressBook={ this.handleAddressBook.bind( this ) } onTogglePersonalInfo={ this.handlePersonalInfo.bind( this ) } onToggleClock={ this.handleClock.bind( this ) }/>
 				<SearchDialog ref="searchDialog" />
 				<div id="ab-overlay" ref="overlay" onClick={ this.handleOverlyClick.bind( this ) } />
 			</div>

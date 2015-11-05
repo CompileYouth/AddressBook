@@ -14,20 +14,24 @@ export default class SettingDialog extends Dialog {
 
 		var $ab = $( this.$element.find( "ul .setting-list-ab" ) );
 		$ab.toggleClass( "active" );
-		
+		console.log( $ab.hasClass( "active" ) );
+		this.props.onToggleAddressBook( $ab.hasClass( "active" ) );
 	}
 
 	handlePersonalInfo() {
 		console.log( "handle personal info" );
 
 		var $pi = $( this.$element.find( "ul .setting-list-pi" ) );
-
+		$pi.toggleClass( "active" );
+		this.props.onTogglePersonalInfo( $pi.hasClass( "active" ) );
 	}
 
 	handleClock() {
 		console.log( "handle clock" );
 
 		var $cl = $( this.$element.find( "ul .setting-list-cl" ) );
+		$cl.toggleClass( "active" );
+		this.props.onToggleClock( $cl.hasClass( "active" ) );
 	}
 
 	render() {
