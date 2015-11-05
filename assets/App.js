@@ -4,6 +4,7 @@ import ContactsPanelContainer from "./panel/ContactsPanelContainer.js";
 import Menu from "./menu/Menu.js";
 import SettingDialog from "./dialog/SettingDialog.js";
 import SearchDialog from "./dialog/SearchDialog.js";
+import PersonalIntoPanel from "./panel/PersonalInfoPanel.js";
 
 export default class App extends React.Component {
 	constructor( props ) {
@@ -68,6 +69,7 @@ export default class App extends React.Component {
 			<div id="ab-app">
 				<Map />
 				<ClockPanel />
+				<PersonalIntoPanel />
 				<ContactsPanelContainer />
 				<Menu onSettingClick={ this.handleMenuSettingClick.bind( this ) } onLocatingClick={ this.handleMenuLocatingClick.bind( this ) } onSearchingClick={ this.handleMenuSearchingClick.bind( this ) }/>
 				<SettingDialog ref="settingDialog" />

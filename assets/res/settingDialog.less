@@ -47,6 +47,7 @@
 			}
 
 			@button-height: 30px;
+			@animation-time: 0.2s;
 			> .setting-button {
 				position: absolute;
 				height: @button-height;
@@ -55,7 +56,8 @@
 				top: 0;
 				bottom: 0;
 				margin: auto;
-				background-color: #4fd064;
+				background-color: #aaa;
+				transition: background @animation-time;
 				border-radius: 0.8em;
 
 				&:hover {
@@ -68,6 +70,20 @@
 					width: @button-height;
 					border-radius: @button-height / 2;
 					background-color: #fff;
+					right: .1em;
+					opacity: 0.5;
+					transition: opacity @animation-time, right @animation-time;
+				}
+			}
+
+			> .setting-button.active {
+				background-color: #4fd064;
+				transition: background @animation-time;
+
+				> .button-circle {
+					right: 1.2em;
+					opacity: 1;
+					transition: opacity @animation-time, right @animation-time;
 				}
 			}
 		}

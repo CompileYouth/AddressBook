@@ -1,0 +1,59 @@
+#ab-personalInfo {
+	z-index: 20;
+	position: absolute;
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+	right: 0px;
+	top: 0px;
+	background-color: @ab-background;
+	border-radius: 0px 0 0 10px;
+
+	> .info-avatar, > .info-name, > .info-quit {
+		position: absolute;
+	}
+
+	> .info-avatar {
+		width: 80px;
+		height: 80px;
+		margin: 10px;
+		border-radius: 5px;
+		background-image: url(./avatar.jpg);
+		background-size: 100% 100%;
+	}
+
+	> .info-name {
+		left: 100px;
+		width: 120px;
+		margin: 20px 10px;
+		height: 60px;
+		line-height: 60px;
+		color: #fff;
+		text-align: left;
+		overflow: hidden;
+	}
+
+	> .info-quit {
+		right: 0;
+		width: 60px;
+		height: 60px;
+		margin: 20px 0;
+
+		> span {
+			color: #fff;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			line-height: 60px;
+			text-align: center;
+			opacity: 0.5;
+
+			&:hover {
+				cursor: pointer;
+				opacity: 1;
+			}
+		}
+	}
+}
