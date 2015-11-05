@@ -8,11 +8,12 @@ export default class SettingDialog extends React.Component {
 	}
 
 	show() {
+		console.log("show dialog");
 		this.$element.css( {
 			display: "block",
 			transform: "scale( 0 )"
 		} ).transit( {
-			transform: "scale( 1 )"
+			transform: "translate( -50% ), scale( 1 )"
 		}, 150);
 	}
 

@@ -20,6 +20,7 @@ export default class App extends React.Component {
 
 		this._showOverlay( function() {
 			console.log( "popup setting dialog");
+
 		} );
 	}
 
@@ -29,17 +30,18 @@ export default class App extends React.Component {
 
 	handleMenuSearchingClick() {
 		console.log("handleMenuSearchingClick");
-	
+		var self = this;
 		this._showOverlay( function() {
 			console.log("popup  searching dialog ");
+			self.refs.searchDialog.show();
 		});
 	
 	}
 
 	handleOverlyClick() {
 		//undisplay overlay
-		//this.refs.settingDialog.hide();
-		//this.refs.searchDialog.hide();
+		this.refs.settingDialog.hide();
+		this.refs.searchDialog.hide();
 		var self = this;
 		this.$overlay.transit( {
 			opacity: 0
