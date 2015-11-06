@@ -68,8 +68,6 @@ export default class SettingDialog extends Dialog {
 				var mouseOffsetX = e.screenX - self.dragContext.mouseX;
 				var mouseOffsetY = e.screenY - self.dragContext.mouseY;
 
-				console.log( e.screenX, e.screenY, mouseOffsetX, mouseOffsetY)
-
 				var newTop = self.dragContext.top + mouseOffsetY;
 				var bodyHeight = $( document ).height();
 				var headerHeight = $header.height();
