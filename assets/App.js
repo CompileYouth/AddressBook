@@ -4,7 +4,7 @@ import ContactsPanelContainer from "./panel/ContactsPanelContainer.js";
 import Menu from "./menu/Menu.js";
 import SettingDialog from "./dialog/SettingDialog.js";
 import SearchDialog from "./dialog/SearchDialog.js";
-import PersonalIntoPanel from "./panel/PersonalInfoPanel.js";
+import PersonalInfoPanel from "./panel/PersonalInfoPanel.js";
 
 export default class App extends React.Component {
 	constructor( props ) {
@@ -50,16 +50,20 @@ export default class App extends React.Component {
 
 	/*---------------------Setting Dialog Begin-------------------------*/
 
-	handleAddressBook() {
+	//state: true-to open, false-to close
+	handleAddressBook( state ) {
 		console.log("address book");
+		console.log(state);
 	}
 
-	handlePersonalInfo() {
+	handlePersonalInfo( state ) {
 		console.log("person info");
+		console.log(state);
 	}
 
-	handleClock() {
+	handleClock( state ) {
 		console.log("clock");
+		console.log(state);
 	}
 
 	/*---------------------Setting Dialog End---------------------------*/
@@ -84,9 +88,9 @@ export default class App extends React.Component {
 		return (
 			<div id="ab-app">
 				<Map />
-				<ClockPanel />
-				<PersonalIntoPanel />
-				<ContactsPanelContainer />
+				<ClockPanel ref="clockPanel"/>
+				<PersonalInfoPanel ref="personalInfoPanel"/>
+				<ContactsPanelContainer ref="contactsPanel"/>
 				<Menu onSettingClick={ this.handleMenuSettingClick.bind( this ) } onLocatingClick={ this.handleMenuLocatingClick.bind( this ) } onSearchingClick={ this.handleMenuSearchingClick.bind( this ) }/>
 				<SettingDialog ref="settingDialog" onToggleAddressBook={ this.handleAddressBook.bind( this ) } onTogglePersonalInfo={ this.handlePersonalInfo.bind( this ) } onToggleClock={ this.handleClock.bind( this ) }/>
 				<SearchDialog ref="searchDialog" />
