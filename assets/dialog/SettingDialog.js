@@ -20,25 +20,18 @@ export default class SettingDialog extends Dialog {
 	/*-------------Handle Method Begin--------------*/
 
 	handleAddressBook() {
-		console.log( "handle address book" );
-
 		var $ab = $( this.$element.find( "ul .setting-list-ab" ) );
 		$ab.toggleClass( "active" );
-		console.log( $ab.hasClass( "active" ) );
 		this.props.onToggleAddressBook( $ab.hasClass( "active" ) );
 	}
 
 	handlePersonalInfo() {
-		console.log( "handle personal info" );
-
 		var $pi = $( this.$element.find( "ul .setting-list-pi" ) );
 		$pi.toggleClass( "active" );
 		this.props.onTogglePersonalInfo( $pi.hasClass( "active" ) );
 	}
 
 	handleClock() {
-		console.log( "handle clock" );
-
 		var $cl = $( this.$element.find( "ul .setting-list-cl" ) );
 		$cl.toggleClass( "active" );
 		this.props.onToggleClock( $cl.hasClass( "active" ) );
@@ -64,12 +57,6 @@ export default class SettingDialog extends Dialog {
 			self.dragContext.mouseY = e.screenY;
 			self.dragContext.left = self.$element.position().left;
 			self.dragContext.top = self.$element.position().top;
-
-			//self.dragContext.left = self.$element.offset().left;
-			//self.dragContext.top = self.$element.offset().top;
-
-			console.log( "begin position", self.$element.offset() );
-			//console.log( self.$element.position());
 
 			self.$element.transition( {
 				scale: 1.04,
@@ -98,8 +85,6 @@ export default class SettingDialog extends Dialog {
 					top: newTop,
 					left: self.dragContext.left + mouseOffsetX
 				} );
-
-				console.log(self.$element.position())
 			} );
 
 			$( document.body ).on( "mouseup", function( e ) {
