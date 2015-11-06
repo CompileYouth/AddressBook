@@ -13,6 +13,7 @@ export default class SettingDialog extends Dialog {
 			left: 0,
 			top: 0
 		};
+		this.isMoving = false;
 		this.makeMoveable();
 	}
 
@@ -53,13 +54,22 @@ export default class SettingDialog extends Dialog {
 		$header.on( "mousedown", function( e ) {
 			e.preventDefault();
 
+			if( self.isMoving ) {
+				return;
+			}
+			self.isMoving = true;
+
 			$header.css( "cursor", "move" );
 			self.dragContext.mouseX = e.screenX;
 			self.dragContext.mouseY = e.screenY;
 			self.dragContext.left = self.$element.position().left;
 			self.dragContext.top = self.$element.position().top;
 
-			console.log( self.dragContext );
+			//self.dragContext.left = self.$element.offset().left;
+			//self.dragContext.top = self.$element.offset().top;
+
+			console.log( "begin position", self.$element.offset() );
+			//console.log( self.$element.position());
 
 			self.$element.transition( {
 				scale: 1.04,
@@ -73,7 +83,7 @@ export default class SettingDialog extends Dialog {
 
 				console.log( e.screenX, e.screenY, mouseOffsetX, mouseOffsetY)
 
-				/*var newTop = self.dragContext.top + mouseOffsetY;
+				var newTop = self.dragContext.top + mouseOffsetY;
 				var bodyHeight = $( document ).height();
 				var headerHeight = $header.height();
 
@@ -82,12 +92,14 @@ export default class SettingDialog extends Dialog {
 				}
 				if( ( newTop + headerHeight ) > bodyHeight ) {
 					newTop = bodyHeight - headerHeight;
-				}*/
+				}
 
 				self.$element.css( {
-					top: self.dragContext.top + mouseOffsetY,
+					top: newTop,
 					left: self.dragContext.left + mouseOffsetX
 				} );
+
+				console.log(self.$element.position())
 			} );
 
 			$( document.body ).on( "mouseup", function( e ) {
@@ -97,7 +109,9 @@ export default class SettingDialog extends Dialog {
 				self.$element.transition( {
 					scale: 1,
 					opacity: 1
-				}, 100);
+				}, 100, function() {
+					self.isMoving = false;
+				});
 			} );
 
 		} );
