@@ -1,5 +1,5 @@
-import ContactsListPanel from "./ContactsListPanel.js";
-import ContactsCollectionPanel from "./ContactsCollectionPanel.js";
+//import ContactsListPanel from "./ContactsListPanel.js";
+//import ContactsCollectionPanel from "./ContactsCollectionPanel.js";
 
 export default class ContactsPanelContainer extends React.Component {
 	constructor( props ) {
@@ -12,6 +12,8 @@ export default class ContactsPanelContainer extends React.Component {
 
 	componentDidMount() {
 		this.$element = $( React.findDOMNode( this ) );
+		this.$listPanel = this.$element.find( ".panel-main #ab-contacts-list" );
+		this.$collectionPanel = this.$element.find( ".panel-main #ab-contacts-collection" );
 		this._initNav();
 		this._initHeader();
 
@@ -191,8 +193,11 @@ export default class ContactsPanelContainer extends React.Component {
 			<div id="ab-contacts">
 				<header className="panel-header" />
 				<main className="panel-main">
-					<ContactsListPanel />
-					<ContactsCollectionPanel />
+					<div id="ab-contacts-list" >
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+					</div>
+
 				</main>
 			</div>
 		);
