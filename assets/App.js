@@ -4,6 +4,7 @@ import ContactsPanelContainer from "./panel/ContactsPanelContainer.js";
 import Menu from "./menu/Menu.js";
 import SettingDialog from "./dialog/SettingDialog.js";
 import SearchDialog from "./dialog/SearchDialog.js";
+import DetailDialog from "./dialog/DetailDialog.js";
 import PersonalInfoPanel from "./panel/PersonalInfoPanel.js";
 
 export default class App extends React.Component {
@@ -94,6 +95,7 @@ export default class App extends React.Component {
 				<Menu onSettingClick={ this.handleMenuSettingClick.bind( this ) } onLocatingClick={ this.handleMenuLocatingClick.bind( this ) } onSearchingClick={ this.handleMenuSearchingClick.bind( this ) }/>
 				<SettingDialog ref="settingDialog" onToggleAddressBook={ this.handleAddressBook.bind( this ) } onTogglePersonalInfo={ this.handlePersonalInfo.bind( this ) } onToggleClock={ this.handleClock.bind( this ) }/>
 				<SearchDialog ref="searchDialog" />
+				<DetailDialog ref="detailDialog" />
 				<div id="ab-overlay" ref="overlay" onClick={ this.handleOverlyClick.bind( this ) } />
 			</div>
 		);

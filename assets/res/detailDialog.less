@@ -1,0 +1,102 @@
+#ab-dialog-detail {
+	z-index: 40;
+	position: absolute;
+	height: 380px;
+	width: 25%;
+	left: 37.5%;
+	top: 200px;
+	background-color: @ab-background;
+	border-radius: 20px;
+
+	@header-height: 60px;
+	> .ab-dialog-detail-header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: @header-height;
+		line-height: @header-height;
+		text-align: center;
+		font-size: 1.2em;
+		border-bottom: @border-size solid rgba( 255, 255, 255, 0.8);
+	}
+
+	> main {
+		position: absolute;
+		top: @header-height;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		> .detail-photo {
+			position: absolute;
+			margin-left: 20px;
+			margin-top: 20px;
+			height: 120px;
+			width: 120px;
+
+			> img {
+				height: 120px;
+				width: 120px;
+				border-radius: 50%;
+			}
+		}
+
+		> .detail-name {
+			margin-top: 20px;
+			margin-left: 180px;
+			position: absolute;
+			width: 80px;
+			height: 120px;
+			line-height: 120px;
+		}
+
+		> .detail-phone, > .detail-email, > .detail-address {
+			position: absolute;
+			left: 40px;
+			right: 40px;
+			height: 50px;
+
+			> .title {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 24px;
+				font-size: 0.8em;
+			}
+
+			> .content {
+				position: absolute;
+				top: 25px;
+				left: 0;
+				right: 0;
+				height: 25px;
+				font-size: 0.8em;
+				text-overflow: hidden;
+
+				> span.fa {
+					position: absolute;
+					height: 25px;
+					width: 25px;
+					right: 0;
+				}
+			}
+		}
+
+		> .detail-phone {
+			top: 150px;
+			border-bottom: @border-size solid rgba( 255, 255, 255, 0.8);
+		}
+
+		> .detail-email {
+			top: 210px;
+			border-bottom: @border-size solid rgba( 255, 255, 255, 0.8);
+		}
+
+		> .detail-address {
+			top: 270px;
+		}
+	}
+}
