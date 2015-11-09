@@ -13,6 +13,7 @@ export default class ContactsPanelContainer extends React.Component {
 	componentDidMount() {
 		this.$element = $( React.findDOMNode( this ) );
 		this.$listPanel = this.$element.find( ".panel-main #ab-contacts-list" );
+		this.$listPanel.perfectScrollbar();
 		this.$collectionPanel = this.$element.find( ".panel-main #ab-contacts-collection" );
 		this._initNav();
 		this._initHeader();
@@ -194,6 +195,19 @@ export default class ContactsPanelContainer extends React.Component {
 				<header className="panel-header" />
 				<main className="panel-main">
 					<div id="ab-contacts-list" >
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
 						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
 						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
 					</div>
