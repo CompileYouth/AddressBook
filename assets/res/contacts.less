@@ -168,14 +168,21 @@
 		}
 
 		> .ab-contacts-name {
+			width: 160px;
 			float: left;
 			height: 55px;
 			margin-left: 15px;
+			text-transform: capitalize;
+			overflow: hidden;
 		}
 
 		&:hover {
 			background-color: rgba( 21, 46, 116, 0.5 );
 			cursor: pointer;
 		}
+	}
+
+	> li.selected {
+		background-color: rgba( 21, 46, 116, 0.8 );
 	}
 }

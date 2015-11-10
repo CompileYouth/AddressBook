@@ -13,7 +13,7 @@ export default class ContactsPanelContainer extends React.Component {
 			contacts: []
 		}
 		this._initContacts();
-		this.election = null;
+		this.selection = null;
 	}
 
 	componentDidMount() {
@@ -41,6 +41,14 @@ export default class ContactsPanelContainer extends React.Component {
 				contacts: self.contacts
 			} );
 		} );
+	}
+
+	handleContactClick( contact, event ) {
+		this.selection = contact;
+		var $selection = $( event.currentTarget );
+		$( ".ab-contacts-item" ).removeClass( "selected" );
+		$selection.addClass( "selected" );
+		
 	}
 
 	_initNav() {
@@ -223,11 +231,11 @@ export default class ContactsPanelContainer extends React.Component {
 					{
 						this.state.contacts.map( function( contact, i ) {
 							return (
-								<li>
+								<li onClick={this.handleContactClick.bind( this, contact )} className="ab-contacts-item">
 									<div className="ab-contacts-avatar">
 										<img src={contact.pictures.thumbnail} />
 									</div>
-									<div className="ab-contacts-name">{contact.username}</div>
+									<div className="ab-contacts-name">{contact.name.first} &nbsp; {contact.name.last}</div>
 								</li>
 							);
 						}, this)
