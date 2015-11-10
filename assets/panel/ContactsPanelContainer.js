@@ -8,6 +8,12 @@ export default class ContactsPanelContainer extends React.Component {
 		this.animating = null;
 		this.timeoutId = null;
 		this.panelStatus = false;//false: hidden, true: shown
+
+		this.state = {
+			contacts: []
+		}
+		this._initContacts();
+		this.election = null;
 	}
 
 	componentDidMount() {
@@ -15,6 +21,7 @@ export default class ContactsPanelContainer extends React.Component {
 		this.$listPanel = this.$element.find( ".panel-main #ab-contacts-list" );
 		this.$listPanel.perfectScrollbar();
 		this.$collectionPanel = this.$element.find( ".panel-main #ab-contacts-collection" );
+		this.$collectionPanel.perfectScrollbar();
 		this._initNav();
 		this._initHeader();
 
@@ -22,6 +29,18 @@ export default class ContactsPanelContainer extends React.Component {
 		this._startPanelListening();
 
 		this.switchToListPanel();
+	}
+
+	_initContacts() {
+		var self = this;
+		$.ajax( {
+			url: "assets/users.json"
+		} ).done( function( data ) {
+			self.contacts = data;
+			self.setState( {
+				contacts: self.contacts
+			} );
+		} );
 	}
 
 	_initNav() {
@@ -173,6 +192,9 @@ export default class ContactsPanelContainer extends React.Component {
 
 		this.$collection_li.removeClass( "active" );
 		this.$users_li.addClass( "active" );
+
+		this.$collectionPanel.hide();
+		this.$listPanel.show();
 	}
 
 	switchToCollectionPanel() {
@@ -187,6 +209,9 @@ export default class ContactsPanelContainer extends React.Component {
 
 		this.$users_li.removeClass( "active" );
 		this.$collection_li.addClass( "active" );
+
+		this.$listPanel.hide();
+		this.$collectionPanel.show();
 	}
 
 	render() {
@@ -195,23 +220,22 @@ export default class ContactsPanelContainer extends React.Component {
 				<header className="panel-header" />
 				<main className="panel-main">
 					<div id="ab-contacts-list" >
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+					{
+						this.state.contacts.map( function( contact, i ) {
+							return (
+								<li>
+									<div className="ab-contacts-avatar">
+										<img src={contact.pictures.thumbnail} />
+									</div>
+									<div className="ab-contacts-name">{contact.username}</div>
+								</li>
+							);
+						}, this)
+					}
+					</div>
+					<div id="ab-contacts-collection">
 						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
 					</div>
-
 				</main>
 			</div>
 		);
