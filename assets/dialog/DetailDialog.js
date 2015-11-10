@@ -6,6 +6,7 @@ export default class DetailDialog extends Dialog {
 	}
 
 	componentDidMount() {
+		var self = this;
 		this.$element = $( React.findDOMNode( this ) );
 		this.dragContext = {
 			mouseX: 0,
@@ -15,6 +16,12 @@ export default class DetailDialog extends Dialog {
 		};
 		this.isMoving = false;
 		this.makeMoveable();
+
+		this.$fav = this.$element.find( "main .detail-fav" );
+	}
+
+	handleFavClick() {
+		this.$fav.toggleClass( "collected" );
 	}
 
 	makeMoveable() {
@@ -83,6 +90,10 @@ export default class DetailDialog extends Dialog {
 				<main>
 					<div className="detail-photo"><img src="http://i.imgur.com/UldCeJR.jpg" /></div>
 					<div className="detail-name">编译青春</div>
+					<div className="detail-fav" onClick={ this.handleFavClick.bind( this ) }>
+						<span className="fa fa-star-o h3"></span>
+						<span className="fa fa-star h3"></span>
+					</div>
 					<div className="detail-phone">
 						<div className="title">电话</div>
 						<div className="content">025-88888888 <span className="fa fa-phone"></span></div>
