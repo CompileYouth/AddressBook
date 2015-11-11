@@ -31,7 +31,6 @@ export default class App extends React.Component {
 	handleMenuSearchingClick() {
 		var self = this;
 		this._showOverlay( function() {
-			var that = self;
 			self.refs.searchDialog.show();
 		});
 	
@@ -41,6 +40,7 @@ export default class App extends React.Component {
 		//undisplay overlay
 		this.refs.settingDialog.hide();
 		this.refs.searchDialog.hide();
+		this.refs.detailDialog.hide();
 		var self = this;
 		this.$overlay.transit( {
 			opacity: 0
@@ -50,8 +50,11 @@ export default class App extends React.Component {
 	}
 
 	handleClickContact( contact ) {
-		//console.log( contact );
+		var self = this;
 		this.refs.detailDialog.activate( contact );
+		this._showOverlay( function() {
+			self.refs.detailDialog.show();
+		});
 	}
 
 	/*---------------------Setting Dialog Begin-------------------------*/

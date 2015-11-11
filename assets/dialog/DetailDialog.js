@@ -35,13 +35,11 @@ export default class DetailDialog extends Dialog {
 	}
 
 	activate( contact ) {
-		//console.log(contact);
 		var self = this;
 		var lat = contact.location.lat;
 		var lng = contact.location.lng;
 		var url = "http://api.map.baidu.com/geocoder/v2/?ak=WZ0bInNGG6AEdGeDygBS4LBX&location=" 
 					+ lat + "," + lng + "&output=json&pois=0";
-					console.log( url );
 		$.ajax( {
 			url: url,
 			success: function( data ) {
@@ -62,7 +60,6 @@ export default class DetailDialog extends Dialog {
 				}
 			},
 			error: function( data ) {
-				//console.log( data.responseText );
 				if( data.responseText ) {
 					var locationInfo = $.parseJSON( data.responseText );
 					if( locationInfo.result ) {
