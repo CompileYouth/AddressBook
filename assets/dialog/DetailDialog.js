@@ -3,6 +3,16 @@ import Dialog from "./Dialog.js";
 export default class DetailDialog extends Dialog {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			contact: {
+				picture: "",
+				name: "",
+				phone: "",
+				email: "",
+				location: ""
+			}
+		};
 	}
 
 	componentDidMount() {
@@ -22,6 +32,54 @@ export default class DetailDialog extends Dialog {
 
 	handleFavClick() {
 		this.$fav.toggleClass( "collected" );
+	}
+
+	activate( contact ) {
+		//console.log(contact);
+		var self = this;
+		var lat = contact.location.lat;
+		var lng = contact.location.lng;
+		var url = "http://api.map.baidu.com/geocoder/v2/?ak=WZ0bInNGG6AEdGeDygBS4LBX&location=" 
+					+ lat + "," + lng + "&output=json&pois=0";
+					console.log( url );
+		$.ajax( {
+			url: url,
+			success: function( data ) {
+				console.log( data );
+				if( data.responseText ) {
+					var locationInfo = $.parseJSON( data.responseText );
+					if( locationInfo.result ) {
+						self.setState({
+							contact: {
+								picture: contact.pictures.medium,
+								name: contact.name.last,
+								phone: contact.phone,
+								email: contact.email,
+								location: locationInfo.result.formatted_address
+							}
+						});
+					}
+				}
+			},
+			error: function( data ) {
+				//console.log( data.responseText );
+				if( data.responseText ) {
+					var locationInfo = $.parseJSON( data.responseText );
+					if( locationInfo.result ) {
+						self.setState({
+							contact: {
+								picture: contact.pictures.medium,
+								name: contact.name.last,
+								phone: contact.phone,
+								email: contact.email,
+								location: locationInfo.result.formatted_address
+							}
+						});
+					}
+				}
+			}
+		} );
+
 	}
 
 	makeMoveable() {
@@ -84,27 +142,29 @@ export default class DetailDialog extends Dialog {
 	}
 
 	render() {
+		var contact = this.state.contact;
+
 		return (
 			<div id="ab-dialog-detail">
 				<header className="ab-dialog-detail-header">详细信息</header>
 				<main>
-					<div className="detail-photo"><img src="http://i.imgur.com/UldCeJR.jpg" /></div>
-					<div className="detail-name">编译青春</div>
+					<div className="detail-photo"><img src={ contact.picture} /></div>
+					<div className="detail-name">{ contact.name }</div>
 					<div className="detail-fav" onClick={ this.handleFavClick.bind( this ) }>
 						<span className="fa fa-star-o h3"></span>
 						<span className="fa fa-star h3"></span>
 					</div>
 					<div className="detail-phone">
 						<div className="title">电话</div>
-						<div className="content">025-88888888 <span className="fa fa-phone"></span></div>
+						<div className="content">{ contact.phone } <span className="fa fa-phone"></span></div>
 					</div>
 					<div className="detail-email">
 						<div className="title">邮件</div>
-						<div className="content">HelloWorld@gmail.com <span className="fa fa-envelope-o"></span></div>
+						<div className="content">{ contact.email } <span className="fa fa-envelope-o"></span></div>
 					</div>
 					<div className="detail-address">
 						<div className="title">地址</div>
-						<div className="content">江苏省南京市 <span className="fa fa-map"></span></div>
+						<div className="content">{ contact.location } &nbsp; {contact.location.lng } <span className="fa fa-map"></span></div>
 					</div>
 				</main>
 			</div>

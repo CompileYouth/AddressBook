@@ -49,6 +49,11 @@ export default class App extends React.Component {
 		} );
 	}
 
+	handleClickContact( contact ) {
+		//console.log( contact );
+		this.refs.detailDialog.activate( contact );
+	}
+
 	/*---------------------Setting Dialog Begin-------------------------*/
 
 	//state: true-to open, false-to close
@@ -91,7 +96,7 @@ export default class App extends React.Component {
 				<Map />
 				<ClockPanel ref="clockPanel"/>
 				<PersonalInfoPanel ref="personalInfoPanel"/>
-				<ContactsPanelContainer ref="contactsPanel"/>
+				<ContactsPanelContainer ref="contactsPanel" onClickContact={ this.handleClickContact.bind( this ) }/>
 				<Menu onSettingClick={ this.handleMenuSettingClick.bind( this ) } onLocatingClick={ this.handleMenuLocatingClick.bind( this ) } onSearchingClick={ this.handleMenuSearchingClick.bind( this ) }/>
 				<SettingDialog ref="settingDialog" onToggleAddressBook={ this.handleAddressBook.bind( this ) } onTogglePersonalInfo={ this.handlePersonalInfo.bind( this ) } onToggleClock={ this.handleClock.bind( this ) }/>
 				<SearchDialog ref="searchDialog" />

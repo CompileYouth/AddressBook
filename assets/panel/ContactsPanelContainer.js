@@ -49,6 +49,7 @@ export default class ContactsPanelContainer extends React.Component {
 		$( ".ab-contacts-item" ).removeClass( "selected" );
 		$selection.addClass( "selected" );
 		
+		this.props.onClickContact( contact );
 	}
 
 	_initNav() {
