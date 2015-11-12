@@ -24,8 +24,9 @@ export default class App extends React.Component {
 		} );
 	}
 
-	handleMenuLocatingClick() {
-		console.log("handleMenuLocatingClick");
+	handleMenuLocatingClick( location ) {
+		//console.log( location );
+		this.refs.map.locateMe( location );
 	}
 
 	handleMenuSearchingClick() {
@@ -115,7 +116,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div id="ab-app">
-				<Map />
+				<Map ref="map" />
 				<ClockPanel ref="clockPanel"/>
 				<PersonalInfoPanel ref="personalInfoPanel"/>
 				<ContactsPanelContainer ref="contactsPanel" onClickContact={ this.handleClickContact.bind( this ) }/>

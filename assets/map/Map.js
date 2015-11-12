@@ -8,6 +8,53 @@ export default class Map extends React.Component {
 		this._initCenter();
 		this._initMap();
 	}
+
+	locateContact( contact ) {
+		this._setContactCenter( contact );
+	}
+
+	locateMe( location ) {
+		var self = this;
+		var center = [ location.lat, location.lng ];
+
+		console.log( this.map.getZoom(), this.map.getBounds());
+
+		//this.map.setZoom( 14 );
+		this.setCenter( center );
+		this.setMarker( center );
+
+		setTimeout( function() {
+			if( self.map.getZoom() !== 14 ) {
+				self.map.setZoom( 14, {
+					animate: true
+				} );
+			}
+		}, 350 );
+
+		
+	}
+
+	setCenter( center ) {
+		this.map.panTo( center, {
+			duration: 0.25,
+			animate: true
+		} );
+	}
+
+	setMarker( marker ) {
+		this.marker.setLatLng( marker );
+        this.marker.closePopup();
+	}
+
+	setPopup( contact ) {
+		if( contact ) {
+
+		}
+		else {
+			//user himself/herself
+
+		}
+	}
 	
 	_initCenter() {
 		if( navigator.geolocation ) {
@@ -32,9 +79,13 @@ export default class Map extends React.Component {
 		    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo( this.map );
 
-		L.marker( this.center ).addTo( this.map )
-		    .bindPopup( 'There am I.' )
-		    .openPopup();
+		this.marker = L.marker( this.center ).addTo( this.map )
+					    .bindPopup( 'There am I.' )
+					    .openPopup();
+	}
+
+	_setContactCenter( contact ) {
+
 	}
 	
 	render() {

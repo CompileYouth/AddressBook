@@ -20,7 +20,32 @@ export default class Menu extends React.Component {
 	}
 
 	handleLocatingClick() {
-		this.props.onLocatingClick();
+		var self = this;
+		$.ajax( {
+			url: "http://api.map.baidu.com/location/ip?ak=LzXiINHYy8jTOEmgriTG1GEn&coor=bd09ll",
+			dataType: "jsonp",
+			success: function( data ) {
+				//var location = data.content.point;
+				//var lat = location.y;
+				//var lng = location.x;
+				/*self.props.onLocatingClick( {
+					lng: lng,
+					lat: lat
+				} );*/
+				self.props.onLocatingClick( {
+					lng: 118.75626860000001,
+					lat: 31.978742599999997
+				} );
+			},
+			error: function( msg ) {
+				self.props.onLocatingClick( {
+					lng: 118.77807441,
+					lat: 32.05723550
+				} );
+			}
+		} );
+
+		
 	}
 
 	handleSearchingClick() {
