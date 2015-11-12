@@ -10,7 +10,8 @@ export default class ContactsPanelContainer extends React.Component {
 		this.panelStatus = false;//false: hidden, true: shown
 
 		this.state = {
-			contacts: []
+			contacts: [],
+			favs: []
 		}
 		this._initContacts();
 		this.selection = null;
@@ -40,6 +41,12 @@ export default class ContactsPanelContainer extends React.Component {
 			self.setState( {
 				contacts: self.contacts
 			} );
+			var favs = self.contacts.filter( function( contact, i ) {
+				return localStorage.getItem( contact.id );
+			} );
+			self.setState( {
+				favs: favs
+			} );
 		} );
 	}
 
@@ -50,6 +57,19 @@ export default class ContactsPanelContainer extends React.Component {
 		$selection.addClass( "selected" );
 		
 		this.props.onClickContact( contact );
+	}
+
+	//state: true-add, fasle-remove
+	toggleContact( state, contactId ) {
+		if( state === true ) {
+			//add 
+		} 
+		else if( state === false ) {
+			//remove
+		} 
+		else {
+			return;
+		}
 	}
 
 	_initNav() {
@@ -232,7 +252,7 @@ export default class ContactsPanelContainer extends React.Component {
 					{
 						this.state.contacts.map( function( contact, i ) {
 							return (
-								<li onClick={this.handleContactClick.bind( this, contact )} className="ab-contacts-item">
+								<li onClick={this.handleContactClick.bind( this, contact )} className="ab-contacts-item" id={ contact.id }>
 									<div className="ab-contacts-avatar">
 										<img src={contact.pictures.thumbnail} />
 									</div>
@@ -243,10 +263,23 @@ export default class ContactsPanelContainer extends React.Component {
 					}
 					</div>
 					<div id="ab-contacts-collection">
-						<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
+					{
+						this.state.favs.map( function( contact, i ) {
+							return (
+								<li onClick={this.handleContactClick.bind( this, contact )} className="ab-contacts-item">
+									<div className="ab-contacts-avatar">
+										<img src={contact.pictures.thumbnail} />
+									</div>
+									<div className="ab-contacts-name">{contact.name.first} &nbsp; {contact.name.last}</div>
+								</li>
+							);
+						}, this)
+					}
 					</div>
 				</main>
 			</div>
 		);
 	}
+
+	//<li><div className="ab-contacts-avatar"><img src="http://i.imgur.com/UldCeJR.jpg" /></div><div className="ab-contacts-name">陈鹏</div></li>
 }

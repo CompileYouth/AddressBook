@@ -1,0 +1,8 @@
+ab.LocalStorageModel = (function() {
+
+	
+
+	return {
+
+	}
+}());

@@ -57,6 +57,25 @@ export default class App extends React.Component {
 		});
 	}
 
+	//add or remove contact
+	//action: add, remove
+	//state: true-add, fasle-remove
+	handleContact( action, contactId ) {
+		console.log( isAdd, contactId );
+		var state = null;
+		if( action === "add" ) {
+			state = true;
+		} 
+		else if( action === "remove" ) {
+			state = false;
+		}
+		else {
+			return;
+		}
+
+		this.refs.contactsPanel.toggleContact( state, contactId );
+	}
+
 	/*---------------------Setting Dialog Begin-------------------------*/
 
 	//state: true-to open, false-to close
@@ -103,7 +122,7 @@ export default class App extends React.Component {
 				<Menu onSettingClick={ this.handleMenuSettingClick.bind( this ) } onLocatingClick={ this.handleMenuLocatingClick.bind( this ) } onSearchingClick={ this.handleMenuSearchingClick.bind( this ) }/>
 				<SettingDialog ref="settingDialog" onToggleAddressBook={ this.handleAddressBook.bind( this ) } onTogglePersonalInfo={ this.handlePersonalInfo.bind( this ) } onToggleClock={ this.handleClock.bind( this ) }/>
 				<SearchDialog ref="searchDialog" />
-				<DetailDialog ref="detailDialog" />
+				<DetailDialog ref="detailDialog" onToggleContact={ this.handleContact.bind( this ) }/>
 				<div id="ab-overlay" ref="overlay" onClick={ this.handleOverlyClick.bind( this ) } />
 			</div>
 		);

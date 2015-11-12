@@ -6,6 +6,7 @@ export default class DetailDialog extends Dialog {
 
 		this.state = {
 			contact: {
+				id: "",
 				picture: "",
 				name: "",
 				phone: "",
@@ -31,10 +32,27 @@ export default class DetailDialog extends Dialog {
 	}
 
 	handleFavClick() {
-		this.$fav.toggleClass( "collected" );
+		//this.$fav.toggleClass( "collected" );
+		if( this.$fav.hasClass( "collected" ) ) {
+			this.$fav.removeClass( "collected" );
+			//remove in localstorage
+			localStorage.removeItem( this.state.contact.id );
+			//remove in collection panel
+			this.props.onToggleContact( "remove", this.state.contact.id );
+		}
+		else {
+			this.$fav.addClass( "collected" );
+			//add in localstorage
+			localStorage.setItem( this.state.contact.id, this.state.contact );
+			//add in collection panel
+			this.props.onToggleContact( "add", this.state.contact.id );
+		}
 	}
 
+
+
 	activate( contact ) {
+		console.log( contact );
 		var self = this;
 		var lat = contact.location.lat;
 		var lng = contact.location.lng;
@@ -49,6 +67,7 @@ export default class DetailDialog extends Dialog {
 					if( locationInfo.result ) {
 						self.setState({
 							contact: {
+								id: contact.id,
 								picture: contact.pictures.medium,
 								name: contact.name.last,
 								phone: contact.phone,
@@ -65,6 +84,7 @@ export default class DetailDialog extends Dialog {
 					if( locationInfo.result ) {
 						self.setState({
 							contact: {
+								id: contact.id,
 								picture: contact.pictures.medium,
 								name: contact.name.last,
 								phone: contact.phone,
@@ -76,6 +96,13 @@ export default class DetailDialog extends Dialog {
 				}
 			}
 		} );
+
+		var contactId = contact.id;
+		if( localStorage.getItem( contactId ) !== null ) {
+			this.$fav.addClass( "collected" );
+		} else {
+			this.$fav.removeClass( "collected" );
+		}
 
 	}
 
