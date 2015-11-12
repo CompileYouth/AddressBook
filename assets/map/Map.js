@@ -14,6 +14,14 @@ export default class Map extends React.Component {
 		var center = [ contact.location.lat, contact.location.lng ];
 		this.setCenter( center );
 		this.setMarker( center );
+
+		setTimeout( function() {
+			if( self.map.getZoom() !== 14 ) {
+				self.map.setZoom( 14, {
+					animate: true
+				} );
+			}
+		}, 350 );
 	}
 
 	locateMe( location ) {
