@@ -52,7 +52,6 @@ export default class DetailDialog extends Dialog {
 
 
 	activate( contact ) {
-		console.log( contact );
 		var self = this;
 		var lat = contact.location.lat;
 		var lng = contact.location.lng;

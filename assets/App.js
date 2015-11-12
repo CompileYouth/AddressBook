@@ -64,7 +64,7 @@ export default class App extends React.Component {
 	//action: add, remove
 	//state: true-add, fasle-remove
 	handleContact( action, contactId ) {
-		console.log( isAdd, contactId );
+		//console.log( isAdd, contactId );
 		var state = null;
 		if( action === "add" ) {
 			state = true;

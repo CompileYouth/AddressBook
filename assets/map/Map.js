@@ -28,7 +28,7 @@ export default class Map extends React.Component {
 		var self = this;
 		var center = [ location.lat, location.lng ];
 
-		console.log( this.map.getZoom(), this.map.getBounds());
+		//console.log( this.map.getZoom(), this.map.getBounds());
 
 		//this.map.setZoom( 14 );
 		this.setCenter( center );

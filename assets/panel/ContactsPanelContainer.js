@@ -59,17 +59,14 @@ export default class ContactsPanelContainer extends React.Component {
 		this.props.onClickContact( contact );
 	}
 
-	//state: true-add, fasle-remove
-	toggleContact( state, contactId ) {
-		if( state === true ) {
-			//add 
-		} 
-		else if( state === false ) {
-			//remove
-		} 
-		else {
-			return;
-		}
+	//add or remove fav contact
+	toggleContact() {
+		var favs = this.contacts.filter( function( contact, i ) {
+			return localStorage.getItem( contact.id );
+		} );
+		this.setState( {
+			favs: favs
+		} );
 	}
 
 	_initNav() {
