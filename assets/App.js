@@ -56,6 +56,8 @@ export default class App extends React.Component {
 		this._showOverlay( function() {
 			self.refs.detailDialog.show();
 		});
+
+		this.refs.map.locateContact( contact );
 	}
 
 	//add or remove contact

@@ -10,7 +10,10 @@ export default class Map extends React.Component {
 	}
 
 	locateContact( contact ) {
-		this._setContactCenter( contact );
+		var self = this;
+		var center = [ contact.location.lat, contact.location.lng ];
+		this.setCenter( center );
+		this.setMarker( center );
 	}
 
 	locateMe( location ) {
@@ -82,10 +85,6 @@ export default class Map extends React.Component {
 		this.marker = L.marker( this.center ).addTo( this.map )
 					    .bindPopup( 'There am I.' )
 					    .openPopup();
-	}
-
-	_setContactCenter( contact ) {
-
 	}
 	
 	render() {
