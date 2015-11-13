@@ -33,15 +33,16 @@ export default class SettingDialog extends Dialog {
 
 	handleClock() {
 		var $cl = $( this.$element.find( "ul .setting-list-cl" ) );
-		//$cl.toggleClass( "active" );
-		if( $cl.hasClass( "active" ) ) {
+		$cl.toggleClass( "active" );
+		/*if( $cl.hasClass( "active" ) ) {
 			$cl.removeClass( "active" );
 			this.props.onToggleClock( false );
 		}
 		else {
 			$cl.addClass( "active" );
 			this.props.onToggleClock( true );
-		}
+		}*/
+		this.props.onToggleClock( $cl.hasClass( "active" ) );
 		
 	}
 
