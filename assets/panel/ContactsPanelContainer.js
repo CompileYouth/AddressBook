@@ -50,6 +50,22 @@ export default class ContactsPanelContainer extends React.Component {
 		} );
 	}
 
+	showNav() {
+		//var eleWidth = this.$element.width();
+		var containerWidth = this.$element.find( ".panel-main" ).width();
+		//var navWidth = this.$users_li.width();
+		this.$element.transit( {
+			left: -containerWidth
+		} );
+	}
+
+	hideNav() {
+		var eleWidth = this.$element.width();
+		this.$element.transit( {
+			left: -eleWidth
+		} );
+	}
+
 	handleContactClick( contact, event ) {
 		this.selection = contact;
 		var $selection = $( event.currentTarget );

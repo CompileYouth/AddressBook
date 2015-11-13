@@ -83,8 +83,17 @@ export default class App extends React.Component {
 
 	//state: true-to open, false-to close
 	handleAddressBook( state ) {
-		console.log("address book");
-		console.log(state);
+
+		if( state === true ) {
+			this.refs.contactsPanel.showNav();
+		}
+		else if ( state === false ) {
+			console.log("hide");
+			this.refs.contactsPanel.hideNav();
+		}
+		else {
+			return;
+		}
 	}
 
 	handlePersonalInfo( state ) {
