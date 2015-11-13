@@ -33,8 +33,16 @@ export default class SettingDialog extends Dialog {
 
 	handleClock() {
 		var $cl = $( this.$element.find( "ul .setting-list-cl" ) );
-		$cl.toggleClass( "active" );
-		this.props.onToggleClock( $cl.hasClass( "active" ) );
+		//$cl.toggleClass( "active" );
+		if( $cl.hasClass( "active" ) ) {
+			$cl.removeClass( "active" );
+			this.props.onToggleClock( false );
+		}
+		else {
+			$cl.addClass( "active" );
+			this.props.onToggleClock( true );
+		}
+		
 	}
 
 	/*-------------Handle Method End----------------*/
@@ -109,7 +117,7 @@ export default class SettingDialog extends Dialog {
 				<ul className="ab-dialog-setting-list">
 					<li>显示通讯录 <span className="setting-button setting-list-ab active" onClick={ this.handleAddressBook.bind( this ) }><span className="button-circle"></span></span></li>
 					<li>显示个人信息 <span className="setting-button setting-list-pi active" onClick={ this.handlePersonalInfo.bind( this ) }><span className="button-circle"></span></span></li>
-					<li>显示时钟 <span className="setting-button setting-list-cl" onClick={ this.handleClock.bind( this ) }><span className="button-circle"></span></span></li>
+					<li>显示时钟 <span className="setting-button setting-list-cl active" onClick={ this.handleClock.bind( this ) }><span className="button-circle"></span></span></li>
 				</ul>
 			</div>
 		);

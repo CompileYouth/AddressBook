@@ -11,6 +11,8 @@ export default class ClockPanel extends React.Component {
 	}
 	
 	componentDidMount() {
+		this.$element = $( React.findDOMNode( this ) );
+		this.panelHeight = this.$element.height();
         this.update();
     }
 
@@ -23,6 +25,19 @@ export default class ClockPanel extends React.Component {
 		this.setState({
 			now: now
 		});
+	}
+
+	show() {
+		this.$element.transit( {
+			top: 0
+		} );
+	}
+
+	hide() {
+		var self = this;
+		this.$element.transit( {
+			top: - self.panelHeight
+		} );
 	}
 	
 	render() {

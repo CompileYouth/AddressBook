@@ -93,8 +93,17 @@ export default class App extends React.Component {
 	}
 
 	handleClock( state ) {
-		console.log("clock");
-		console.log(state);
+
+		if( state === true ) {
+			this.refs.clockPanel.show();
+		}
+		else if ( state === false ) {
+			console.log("hide");
+			this.refs.clockPanel.hide();
+		}
+		else {
+			return;
+		}
 	}
 
 	/*---------------------Setting Dialog End---------------------------*/
