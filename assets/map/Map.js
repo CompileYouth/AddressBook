@@ -97,19 +97,33 @@ export default class Map extends React.Component {
 	}
 
 	test() {
-		//var start = {x:31.978742599999997, y:118.75626860000001};
-		//var end = {x:31.998742599999997, y:118.78626860000001};
+		var start = L.latLng( 31.978742599999997,  118.75626860000001 );
+		var end = L.latLng( 31.998742599999997,  118.78626860000001 );
 
-		/*var generator = new arc.GreatCircle(start, end, {'name': 'Seattle to DC'});
-		var line = generator.Arc(100,{offset:10});*/
-		/*var polyline = L.polyline(
-						[latlng1, latlng2] , 
+		var polyline = L.polyline(
+						[start, end] /*, 
 						{
-							color: 'red',
-							"border-adius": "10%"
-						}
+							//color: 'red'//,
+							gradient: {
+						        vector: [['0%', '50%'], ['100%', '50%']],
+						        stops: [{
+						            offset: '0%',
+						            style: {
+						                color: '#ffffff',
+						                opacity: 1
+						            }
+						        }, {
+						            offset: '50%',
+						            style: {
+						                color: '#ff0000',
+						                opacity: 1
+						            }
+						        }]
+						    }
+						}*/
 						).addTo(this.map);
-		this.map.fitBounds(polyline.getBounds());*/
+
+		//this.map.fitBounds(polyline.getBounds());
 		//L.Polyline.Arc([31.978742599999997, 118.75626860000001], [55.7522200, 37.6155600]).addTo(this.map);
 
 		/*var polyline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.78626860000001], {
@@ -132,7 +146,7 @@ export default class Map extends React.Component {
 					   'T',[31.998742599999997, 118.78626860000001]]).addTo(this.map);*/
 
 
-		var polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
+		/*var polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
 					   'T',[31.998742599999997, 118.72626860000001]],
 					   {
 					   	//color:'-webkit-linear-gradient(left, red, blue)',
@@ -142,7 +156,7 @@ export default class Map extends React.Component {
 					   	weight: 5,
 					   	fill:false,
 					   	opacity: 1,
-					   	gradient: true,
+					   	//gradient: true,
 					   	gradient: {
 					        vector: [['0%', '50%'], ['100%', '50%']],
 					        stops: [{
@@ -160,7 +174,7 @@ export default class Map extends React.Component {
 					        }]
 					    }
 					   }
-					   ).addTo(this.map);
+					   ).addTo(this.map);*/
 
 /*		var start = L.latLng( 31.978742599999997,  118.75626860000001 );
 		var end = L.latLng( 31.998742599999997,  118.78626860000001 );
