@@ -124,7 +124,7 @@ export default class Map extends React.Component {
 						).addTo(this.map);*/
 
 		//this.map.fitBounds(polyline.getBounds());
-		var arcline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.72626860000001], {
+		var arcline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [39.998742599999997, 128.72626860000001], {
 			vertices: 20,
 			offset: 0.001
 		}).addTo(this.map);
@@ -153,7 +153,7 @@ export default class Map extends React.Component {
 						   'T',[31.998742599999997, 118.78626860000001]]).addTo(this.map);*/
 
 
-		this.polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
+		/*this.polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
 					   'T',[31.998742599999997, 118.72626860000001]],
 					   {
 					   	color: 'black',
@@ -161,7 +161,7 @@ export default class Map extends React.Component {
 					   	fill:false,
 					   	opacity: 1
 					   }
-					   ).addTo(this.map);
+					   ).addTo(this.map);*/
 
 
 	}
