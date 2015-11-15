@@ -97,11 +97,11 @@ export default class Map extends React.Component {
 	}
 
 	test() {
-		var start = L.latLng( 31.978742599999997,  118.75626860000001 );
-		var end = L.latLng( 31.998742599999997,  118.78626860000001 );
+		/*var start = L.latLng( 31.978742599999997,  118.75626860000001 );
+		var end = L.latLng( 31.998742599999997,  118.78626860000001 );*/
 
-		var polyline = L.polyline(
-						[start, end] /*, 
+		/*var polyline = L.polyline(
+						[start, end] , 
 						{
 							//color: 'red'//,
 							gradient: {
@@ -120,11 +120,16 @@ export default class Map extends React.Component {
 						            }
 						        }]
 						    }
-						}*/
-						).addTo(this.map);
+						}
+						).addTo(this.map);*/
 
 		//this.map.fitBounds(polyline.getBounds());
-		//L.Polyline.Arc([31.978742599999997, 118.75626860000001], [55.7522200, 37.6155600]).addTo(this.map);
+		var arcline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.72626860000001], {
+			vertices: 20,
+			offset: 0.001
+		}).addTo(this.map);
+
+		//console.log( arcline.getLatLngs());
 
 		/*var polyline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.78626860000001], {
 		    color: "red",
@@ -133,76 +138,31 @@ export default class Map extends React.Component {
 		    weight: 5
 		}).addTo(this.map);*/
 
-		//var polyline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.78626860000001]).addTo(this.map);
+		/*var polyline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.78626860000001], {
+			vertices: 200
+		}).addTo(this.map);
 
 		//this.map.fitBounds(polyline.getBounds());
 
-		/*L.Polyline.Arc([31.978742599999997, 118.75626860000001], [67.50000, 170.03333], {
+		L.Polyline.Arc([31.978742599999997, 118.75626860000001], [67.50000, 170.03333], {
 		    color: "red",
-		    vertices: 100
-		}).addTo(this.map);
+		    vertices: 2000
+		}).addTo(this.map);*/
 
-		var pathOne = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.76626860000001],
-					   'T',[31.998742599999997, 118.78626860000001]]).addTo(this.map);*/
+			/*var pathOne = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.76626860000001],
+						   'T',[31.998742599999997, 118.78626860000001]]).addTo(this.map);*/
 
 
-		/*var polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
+		this.polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
 					   'T',[31.998742599999997, 118.72626860000001]],
 					   {
-					   	//color:'-webkit-linear-gradient(left, red, blue)',
-					   	//color: 'linear-gradient(left, red, blue)',
-					   	//color: 'linearGradient(red, blue)',
 					   	color: 'black',
 					   	weight: 5,
 					   	fill:false,
-					   	opacity: 1,
-					   	//gradient: true,
-					   	gradient: {
-					        vector: [['0%', '50%'], ['100%', '50%']],
-					        stops: [{
-					            offset: '0%',
-					            style: {
-					                color: '#ffffff',
-					                opacity: 1
-					            }
-					        }, {
-					            offset: '50%',
-					            style: {
-					                color: '#ff0000',
-					                opacity: 1
-					            }
-					        }]
-					    }
+					   	opacity: 1
 					   }
-					   ).addTo(this.map);*/
+					   ).addTo(this.map);
 
-/*		var start = L.latLng( 31.978742599999997,  118.75626860000001 );
-		var end = L.latLng( 31.998742599999997,  118.78626860000001 );
-
-		var hotlineLayer = L.hotline([ start, end ], {
-			min: 150,
-			max: 350,
-			palette: {
-				0.0: '#008800',
-				0.5: '#ffff00',
-				1.0: '#ff0000'
-			},
-			weight: 5,
-			outlineColor: '#000000',
-			outlineWidth: 1
-		}).addTo(this.map);*/
-
-		/*polyline.setStyle({
-			color: 'red',
-			color: '-webkit-linear-gradient(red, blue)'
-		});*/
-
-		/*var decorator = L.polylineDecorator(polyline, {
-		    patterns: [
-		        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
-		        {offset: 0, repeat: 20, symbol: L.Symbol.dash({pixelSize: 10})}
-		    ]
-		}).addTo(this.map);*/
 
 	}
 	
