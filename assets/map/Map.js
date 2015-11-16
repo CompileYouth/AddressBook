@@ -159,12 +159,15 @@ export default class Map extends React.Component {
 					   	weight: 5,
 					   	fill:false,
 					   	opacity: 1,
-					   	stroke: "url(#linear)"
+					   	stroke: "url(#gradient)"
 					   }
 					   ).addTo(this.map);
 
+		//$( polyline._path ).addClass( "ab-path" );
 
-		console.log(polyline);
+		$( "svg" ).append( '<defs><linearGradient id="gradient"><stop offset="20%" stop-color="#39F" /><stop offset="90%" stop-color="#F3F" /></linearGradient></defs>' );
+
+		//console.log(polyline);
 	}
 	
 	render() {
