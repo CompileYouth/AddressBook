@@ -137,7 +137,14 @@ export default class App extends React.Component {
 		return (
 			<div id="ab-app">
 				<Map ref="map" />
-				
+				<ClockPanel ref="clockPanel"/>
+				<PersonalInfoPanel ref="personalInfoPanel"/>
+				<ContactsPanelContainer ref="contactsPanel" onClickContact={ this.handleClickContact.bind( this ) }/>
+				<Menu onSettingClick={ this.handleMenuSettingClick.bind( this ) } onLocatingClick={ this.handleMenuLocatingClick.bind( this ) } onSearchingClick={ this.handleMenuSearchingClick.bind( this ) }/>
+				<SettingDialog ref="settingDialog" onToggleAddressBook={ this.handleAddressBook.bind( this ) } onTogglePersonalInfo={ this.handlePersonalInfo.bind( this ) } onToggleClock={ this.handleClock.bind( this ) }/>
+				<SearchDialog ref="searchDialog" />
+				<DetailDialog ref="detailDialog" onToggleContact={ this.handleContact.bind( this ) }/>
+				<div id="ab-overlay" ref="overlay" onClick={ this.handleOverlyClick.bind( this ) } />
 			</div>
 		);
 	}

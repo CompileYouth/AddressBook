@@ -153,27 +153,27 @@ export default class Map extends React.Component {
 						   'T',[31.998742599999997, 118.78626860000001]]).addTo(this.map);*/
 
 
-		var polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
+		var polyline1 = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
 					   'T',[31.998742599999997, 118.72626860000001]],
 					   {
 					   	weight: 5,
 					   	fill: false,
 					   	stroke: true,
-					   	opacity: 1,
-					   	color: "url(#gradient1)"
+					   	opacity: 1//,
+					   	//color: "url(#gradient1)"
 					   }
 					   ).addTo(this.map);
 
 		//$( polyline._path ).addClass( "ab-path" );
 
-		polyline.setStyle({
-			stroke: "url(#gradient)"
-		});
+		polyline1._path.classList.add("ab-path");
 
 		$( "svg" ).append( '<defs><linearGradient id="gradient1"><stop offset="0%" stop-opacity="0.3" /><stop offset="100%" stop-opacity="1" /></linearGradient></defs>' );
 		$( "svg" ).append( '<defs><linearGradient id="gradient2"><stop offset="0%" stop-opacity="1" /><stop offset="100%" stop-opacity="0.3" /></linearGradient></defs>' );
 
-		var polyline = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.76626860000001],
+		//$(".ab-path").attr("stroke", "url(#gradient1)");
+
+		var polyline2 = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.76626860000001],
 					   'T',[31.998742599999997, 118.79626860000001]],
 					   {
 					   	weight: 5,
