@@ -31,6 +31,7 @@ L.Curve = L.Path.extend({
 	_setPath: function(path){
 		this._coords = path;
 		this._bounds = this._computeBounds();
+		//console.log(this._coords);
 	},
 	
 	_computeBounds: function(){
@@ -124,9 +125,11 @@ L.Curve = L.Path.extend({
 		this._updatePath();
 	},
 	
-	_updatePath: function() {
-		this._renderer._updatecurve(this);
-	},
+	/*_updatePath: function() {
+		//this._renderer._updatecurve(this);
+		this._setPath(this, this._curvePointsToPath(this._points));
+		//console.log(this._points);
+	},*/
 
 	_project: function() {
 		var coord, lastCoord, curCommand, curPoint;
@@ -157,14 +160,38 @@ L.Curve = L.Path.extend({
 				this._points.push(curPoint);
 			}
 		}
-	}	
+	},
+
+	_curvePointsToPath: function(points){
+		var point, curCommand, str = '';
+		for(var i = 0; i < points.length; i++){
+			point = points[i];
+			if(typeof point == 'string' || point instanceof String){
+				curCommand = point;
+				str += curCommand;
+			}else{
+				switch(curCommand){
+					case 'H':
+						str += point.x + ' ';
+						break;
+					case 'V':
+						str += point.y + ' ';
+						break;
+					default:
+						str += point.x + ',' + point.y + ' ';
+						break;
+				}
+			}
+		}
+		return str || 'M0 0';
+	}
 });
 
 L.curve = function (path, options){
 	return new L.Curve(path, options);
 };
 
-L.SVG.include({
+/*L.SVG.include({
 	_updatecurve: function(layer){
 		this._setPath(layer, this._curvePointsToPath(layer._points));
     	},
@@ -191,4 +218,4 @@ L.SVG.include({
 		}
 		return str || 'M0 0';
 	}
-});
+});*/
