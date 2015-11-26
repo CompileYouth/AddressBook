@@ -125,11 +125,11 @@ L.Curve = L.Path.extend({
 		this._updatePath();
 	},
 	
-	/*_updatePath: function() {
+	_updatePath: function() {
 		//this._renderer._updatecurve(this);
-		this._setPath(this, this._curvePointsToPath(this._points));
-		//console.log(this._points);
-	},*/
+		//this._setPath(this, this._curvePointsToPath(this._points));
+		console.log(this._points);
+	},
 
 	_project: function() {
 		var coord, lastCoord, curCommand, curPoint;
