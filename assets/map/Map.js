@@ -1,4 +1,5 @@
 import MetroLineLayer from "./layer/MetroLineLayer.js";
+//import MetroLineLayer from "./layer/MetroLineLayer.js";
 
 export default class Map extends React.Component {
 	constructor( props ) {
@@ -8,9 +9,9 @@ export default class Map extends React.Component {
 	
 	componentDidMount() {
 		this._initCenter();
-		this._initLayerGroup();
+		//this._initLayerGroup();
 		this._initMap();
-		this._initLayers();
+		//this._initLayers();
 	}
 
 	locateContact( contact ) {
@@ -94,7 +95,11 @@ export default class Map extends React.Component {
 		    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo( this.map );
 
-		this.layerGroup.addTo(this.map);
+		this.marker = L.marker( this.center ).addTo( this.map )
+					    .bindPopup( 'There am I.' )
+					    .openPopup();
+
+		//this.layerGroup.addTo(this.map);
 	}
 
 	_initLayerGroup() {
