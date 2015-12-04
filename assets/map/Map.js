@@ -1,3 +1,5 @@
+import MetroLineLayer from "./layer/MetroLineLayer.js";
+
 export default class Map extends React.Component {
 	constructor( props ) {
 		super( props );
@@ -6,8 +8,9 @@ export default class Map extends React.Component {
 	
 	componentDidMount() {
 		this._initCenter();
+		this._initLayerGroup();
 		this._initMap();
-		this.test();
+		this._initLayers();
 	}
 
 	locateContact( contact ) {
@@ -91,100 +94,27 @@ export default class Map extends React.Component {
 		    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo( this.map );
 
-		/*this.marker = L.marker( this.center ).addTo( this.map )
-					    .bindPopup( 'There am I.' )
-					    .openPopup();*/
+		this.layerGroup.addTo(this.map);
 	}
 
-	test() {
-		/*var start = L.latLng( 31.978742599999997,  118.75626860000001 );
-		var end = L.latLng( 31.998742599999997,  118.78626860000001 );*/
+	_initLayerGroup() {
+		this.layerGroup = L.layerGroup();
+	}
 
-		/*var polyline = L.polyline(
-						[start, end] , 
-						{
-							//color: 'red'//,
-							gradient: {
-						        vector: [['0%', '50%'], ['100%', '50%']],
-						        stops: [{
-						            offset: '0%',
-						            style: {
-						                color: '#ffffff',
-						                opacity: 1
-						            }
-						        }, {
-						            offset: '50%',
-						            style: {
-						                color: '#ff0000',
-						                opacity: 1
-						            }
-						        }]
-						    }
-						}
-						).addTo(this.map);*/
+	_initLayers() {
+		
+		$.ajax({
+			url: "assets/data/metroline-nanjing.json"
+		}).done( (data) => {
+			const line1_stations = data["1"];
+			const latlngs = [];
+			line1_stations.forEach((singleStation) => {
+				latlngs.push(L.latLng(singleStation.lat, singleStation.lng));
+			});
 
-		//this.map.fitBounds(polyline.getBounds());
-		/*var arcline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [39.998742599999997, 128.72626860000001], {
-			vertices: 20,
-			offset: 0.001
-		}).addTo(this.map);*/
+			L.polyline(latlngs, {color: 'red'}).addTo(this.layerGroup);
+		});
 
-		//console.log( arcline.getLatLngs());
-
-		/*var polyline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.78626860000001], {
-		    color: "red",
-		    vertices: 1000,
-		    offset: 10,
-		    weight: 5
-		}).addTo(this.map);*/
-
-		/*var polyline = L.Polyline.Arc([31.978742599999997, 118.75626860000001], [31.998742599999997, 118.78626860000001], {
-			vertices: 200
-		}).addTo(this.map);
-
-		//this.map.fitBounds(polyline.getBounds());
-
-		L.Polyline.Arc([31.978742599999997, 118.75626860000001], [67.50000, 170.03333], {
-		    color: "red",
-		    vertices: 2000
-		}).addTo(this.map);*/
-
-			/*var pathOne = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.76626860000001],
-						   'T',[31.998742599999997, 118.78626860000001]]).addTo(this.map);*/
-
-
-		var polyline1 = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.74626860000001],
-					   'T',[31.998742599999997, 118.72626860000001]],
-					   {
-					   	weight: 5,
-					   	fill: false,
-					   	stroke: true,
-					   	opacity: 1//,
-					   	//color: "url(#gradient1)"
-					   }
-					   ).addTo(this.map);
-
-		//$( polyline._path ).addClass( "ab-path" );
-
-		polyline1._path.classList.add("ab-path");
-
-		$( "svg" ).append( '<defs><linearGradient id="gradient1"><stop offset="0%" stop-opacity="0.3" /><stop offset="100%" stop-opacity="1" /></linearGradient></defs>' );
-		$( "svg" ).append( '<defs><linearGradient id="gradient2"><stop offset="0%" stop-opacity="1" /><stop offset="100%" stop-opacity="0.3" /></linearGradient></defs>' );
-
-		//$(".ab-path").attr("stroke", "url(#gradient1)");
-
-		var polyline2 = L.curve(['M',[31.978742599999997, 118.75626860000001],'T',[31.988742599999997, 118.76626860000001],
-					   'T',[31.998742599999997, 118.79626860000001]],
-					   {
-					   	weight: 5,
-					   	//fill:"url(#gradient)",
-					   	opacity: 1,
-					   	stroke: true,
-					   	color: "url(#gradient2)"
-					   }
-					   ).addTo(this.map);
-
-		//console.log(polyline);
 	}
 	
 	render() {

@@ -126,7 +126,7 @@ L.Curve = L.Path.extend({
 	},
 	
 	_updatePath: function() {
-		//this._renderer._updatecurve(this);
+		this._renderer._updatecurve(this);
 		//this._setPath(this, this._curvePointsToPath(this._points));
 		console.log(this._points);
 	},
@@ -191,7 +191,7 @@ L.curve = function (path, options){
 	return new L.Curve(path, options);
 };
 
-/*L.SVG.include({
+L.SVG.include({
 	_updatecurve: function(layer){
 		this._setPath(layer, this._curvePointsToPath(layer._points));
     	},
@@ -218,4 +218,4 @@ L.curve = function (path, options){
 		}
 		return str || 'M0 0';
 	}
-});*/
+});
