@@ -1,4 +1,3 @@
-import MetroLineLayer from "./layer/MetroLineLayer.js";
 //import MetroLineLayer from "./layer/MetroLineLayer.js";
 
 export default class Map extends React.Component {
